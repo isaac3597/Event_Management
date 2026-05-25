@@ -26,16 +26,16 @@ if(isset($_POST['buy'])) {
 
     $quantity = $_POST['quantity'];
 
-    // Check available tickets
     if($quantity > $event['available_tickets']) {
+
         $error = "Not enough tickets available";
+
     } else {
 
         $user_id = $_SESSION['user_id'];
 
         $total_price = $quantity * $event['ticket_price'];
 
-        // Save ticket purchase
         $insert = "INSERT INTO tickets(
                         user_id,
                         event_id,
@@ -51,24 +51,55 @@ if(isset($_POST['buy'])) {
 
         if(mysqli_query($conn, $insert)) {
 
-            // Update remaining tickets
+            // Get inserted ticket ID
+            $ticket_id = mysqli_insert_id($conn);
+
+            // Generate pass code
+            $pass_code = "PASS-" . rand(100000,999999);
+
+            // QR content
+            $qr_data = "
+EVENT: {$event['title']}
+TICKET ID: {$ticket_id}
+USER ID: {$user_id}
+PASS: {$pass_code}
+STATUS: AUTHORISED
+";
+
+            // Include QR library
+            include '../phpqrcode/qrlib.php';
+
+            // File name
+            $file_name = 'ticket_'.$ticket_id.'.png';
+
+            // Save path
+            $file_path = '../assets/qrcodes/'.$file_name;
+
+            // Generate QR
+            QRcode::png($qr_data, $file_path);
+
+            // Save QR name
+            mysqli_query($conn, "
+                UPDATE tickets
+                SET qr_code='$file_name'
+                WHERE id='$ticket_id'
+            ");
+
+            // Update ticket count
             $remaining = $event['available_tickets'] - $quantity;
 
-            $update = "UPDATE events
-                       SET available_tickets='$remaining'
-                       WHERE id='$event_id'";
-
-            mysqli_query($conn, $update);
+            mysqli_query($conn, "
+                UPDATE events
+                SET available_tickets='$remaining'
+                WHERE id='$event_id'
+            ");
 
             $success = "Ticket purchased successfully";
 
-            // Refresh event data
-            $query = "SELECT * FROM events WHERE id='$event_id'";
-            $result = mysqli_query($conn, $query);
-            $event = mysqli_fetch_assoc($result);
-
         } else {
+
             $error = "Error purchasing ticket";
+
         }
     }
 }
