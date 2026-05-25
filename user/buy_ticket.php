@@ -129,7 +129,7 @@ if(isset($_POST['buy'])) {
 
     </div>
 
-    <form method="POST">
+    <form method="POST" action="mpesa_payment.php">
 
         <label>Number of Tickets</label>
 
@@ -140,9 +140,14 @@ if(isset($_POST['buy'])) {
             max="<?php echo $event['available_tickets']; ?>"
             required
         >
-
+        <input
+    type="text"
+    name="phone"
+    placeholder="Enter M-Pesa Number e.g 254712345678"
+    required
+>
         <button type="submit" name="buy">
-            Purchase Ticket
+    Pay with M-Pesa
         </button>
 
     </form>
