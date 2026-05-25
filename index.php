@@ -8,6 +8,7 @@
 <h1>Welcome to Event Management System</h1>
 
 <div class="navbar">
+    <link rel="stylesheet" href="assets/style.css">
     <a href="index.php">Home</a>
     <a href="auth/login.php">Login</a>
     <a href="auth/register.php">Register</a>
