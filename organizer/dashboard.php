@@ -32,6 +32,11 @@ if(!isset($_SESSION['user_id']) || $_SESSION['role'] != 'organizer') {
 <div class="container">
 
     <div class="navbar">
+        <a href="generate_report.php">
+    <button>
+        Download Ticket Holders Report
+    </button>
+</a>
         <a href="../index.php">Home</a>
         <a href="events.php">Events</a>
         <a href="my_tickets.php">My Tickets</a>
