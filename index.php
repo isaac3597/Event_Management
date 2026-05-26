@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Event Management System</title>
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
 </head>
 <body>
 

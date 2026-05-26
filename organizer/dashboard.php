@@ -25,25 +25,28 @@ if(!isset($_SESSION['user_id']) || $_SESSION['role'] != 'organizer') {
 <html>
 <head>
     <title>Event Management System</title>
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
 
-<div class="container">
+<div class="navbar">
 
-    <div class="navbar">
-        <a href="generate_report.php">
-    <button>
+    <a href="create_event.php">
+        Create Event
+    </a>
+
+    <a href="generate_report.php">
         Download Ticket Holders Report
-    </button>
-</a>
-        <a href="../index.php">Home</a>
-        <a href="events.php">Events</a>
-        <a href="my_tickets.php">My Tickets</a>
-        <a href="../auth/logout.php">Logout</a>
-    </div>
+    </a>
 
-    <!-- PAGE CONTENT HERE -->
+    <a href="../index.php">
+        Home
+    </a>
+
+    <a href="../auth/logout.php">
+        Logout
+    </a>
 
 </div>
 
