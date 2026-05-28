@@ -15,7 +15,7 @@ if(!isset($_SESSION['user_id']) || $_SESSION['role'] != 'organizer') {
 
 <h1>Welcome <?php echo $_SESSION['fullname']; ?></h1>
 
-<a href="create_event.php">Create Event</a>
+
 
 </body>
 </html>
@@ -47,7 +47,9 @@ if(!isset($_SESSION['user_id']) || $_SESSION['role'] != 'organizer') {
     <a href="../auth/logout.php">
         Logout
     </a>
-
+<a href="manage_events.php">
+    Manage Events
+</a>
 </div>
 
 </body>

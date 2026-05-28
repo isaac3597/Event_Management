@@ -39,9 +39,39 @@ $result = mysqli_query($conn, $sql);
 
     <p><strong>Organizer:</strong> <?php echo $row['fullname']; ?></p>
 
-    <p><strong>Ticket Price:</strong> $<?php echo $row['ticket_price']; ?></p>
+    <div class="ticket-prices">
 
-    <p><strong>Tickets Left:</strong> <?php echo $row['available_tickets']; ?></p>
+    <p>
+        <strong>Regular:</strong>
+        KSH <?php echo $row['regular_price']; ?>
+    </p>
+
+    <p>
+        <strong>VIP:</strong>
+        KSH <?php echo $row['vip_price']; ?>
+    </p>
+
+    <p>
+        <strong>VVIP:</strong>
+        KSH <?php echo $row['vvip_price']; ?>
+    </p>
+
+</div>
+
+    <p>
+    <strong>Regular Seats:</strong>
+    <?php echo $row['regular_tickets']; ?>
+</p>
+
+<p>
+    <strong>VIP Seats:</strong>
+    <?php echo $row['vip_tickets']; ?>
+</p>
+
+<p>
+    <strong>VVIP Seats:</strong>
+    <?php echo $row['vvip_tickets']; ?>
+</p>
 
     <a href="buy_ticket.php?id=<?php echo $row['id']; ?>">
         <button>Buy Ticket</button>
