@@ -3,25 +3,25 @@ session_start();
 
 include '../config/db.php';
 
+$error = "";
+
 if(isset($_POST['login'])) {
 
-    $email = $_POST['email'];
+    $email = trim($_POST['email']);
 
-    $password = $_POST['password'];
+    $password = trim($_POST['password']);
 
     $sql = "SELECT * FROM users
             WHERE email='$email'
             AND password='$password'";
 
-    // EXECUTE QUERY
     $result = mysqli_query($conn, $sql);
 
-    // CHECK USER
     if(mysqli_num_rows($result) > 0) {
 
         $user = mysqli_fetch_assoc($result);
 
-        // CHECK ORGANIZER APPROVAL
+        // Organizer approval check
         if(
             $user['role'] == 'organizer'
             &&
@@ -33,32 +33,33 @@ if(isset($_POST['login'])) {
 
         } else {
 
-            // SAVE SESSION
+            // Save sessions
             $_SESSION['user_id'] = $user['id'];
 
             $_SESSION['role'] = $user['role'];
 
-            // REDIRECT BASED ON ROLE
+            // REDIRECTS
             if($user['role'] == 'admin') {
 
                 header(
-                    'Location: ../admin/dashboard.php'
+                    "Location: ../admin/dashboard.php"
                 );
+                exit();
 
             } elseif($user['role'] == 'organizer') {
 
                 header(
-                    'Location: ../organizer/dashboard.php'
+                    "Location: ../organizer/dashboard.php"
                 );
+                exit();
 
             } else {
 
                 header(
-                    'Location: ../user/events.php'
+                    "Location: ../user/events.php"
                 );
+                exit();
             }
-
-            exit();
         }
 
     } else {
@@ -85,7 +86,7 @@ if(isset($_POST['login'])) {
 
     <h2>Login</h2>
 
-    <?php if(isset($error)) { ?>
+    <?php if($error != "") { ?>
 
         <p style="color:red;">
             <?php echo $error; ?>
@@ -115,14 +116,11 @@ if(isset($_POST['login'])) {
 
     </form>
 
-    <p style="text-align:center; margin-top:15px;">
+    <p style="margin-top:15px;">
 
         Don't have an account?
 
-        <a
-            href="register.php"
-            style="color:#00c3ff; font-weight:bold;"
-        >
+        <a href="register.php">
             Register Here
         </a>
 

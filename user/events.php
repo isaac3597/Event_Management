@@ -23,9 +23,7 @@ $result = mysqli_query($conn, $sql);
         <a href="events.php">Events</a>
         <a href="my_tickets.php">My Tickets</a>
         <a href="../auth/logout.php">Logout</a>
-        <button id="darkModeBtn">
-    🌙 Dark Mode
-</button>
+        
     </div>
 
     <!-- PAGE CONTENT HERE -->
