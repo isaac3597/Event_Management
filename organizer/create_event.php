@@ -15,25 +15,34 @@ if(isset($_POST['create'])) {
 
     $organizer_id = $_SESSION['user_id'];
 
+    $image_name = $_FILES['image']['name'];
+
+$tmp_name = $_FILES['image']['tmp_name'];
+
+$folder = "../assets/uploads/" . $image_name;
+
+move_uploaded_file($tmp_name, $folder);
     // REPLACE OLD SQL WITH THIS
-    $sql = "INSERT INTO events(
-                organizer_id,
-                title,
-                description,
-                location,
-                event_date,
-                ticket_price,
-                available_tickets
-            )
-            VALUES(
-                '$organizer_id',
-                '$title',
-                '$description',
-                '$location',
-                '$event_date',
-                '$ticket_price',
-                '$available_tickets'
-            )";
+   $sql = "INSERT INTO events(
+            organizer_id,
+            title,
+            description,
+            location,
+            event_date,
+            ticket_price,
+            available_tickets,
+            image
+        )
+        VALUES(
+            '$organizer_id',
+            '$title',
+            '$description',
+            '$location',
+            '$event_date',
+            '$ticket_price',
+            '$available_tickets',
+            '$image_name'
+        )";
 
     if(mysqli_query($conn, $sql)) {
 
@@ -59,7 +68,13 @@ if(isset($_POST['create'])) {
 
 <h2>Create Event</h2>
 
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
+    <input
+    type="file"
+    name="image"
+    accept="image/*"
+    required
+><br><br>
 
     <input 
         type="text" 

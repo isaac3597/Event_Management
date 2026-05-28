@@ -42,27 +42,7 @@ if(isset($_POST['login'])) {
 <body>
 
 <h2>Login</h2>
-
-<form method="POST">
-    <input type="email" name="email" placeholder="Email" required><br><br>
-
-    <input type="password" name="password" placeholder="Password" required><br><br>
-
-    <button type="submit" name="login">Login</button>
-</form>
-
-</body>
-</html>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Event Management System</title>
-    <link rel="stylesheet" href="../assets/style.css">
-</head>
-<body>
-
-<div class="container">
+ <div class="container">
 
     <div class="navbar">
         <a href="../index.php">Home</a>
@@ -71,7 +51,37 @@ if(isset($_POST['login'])) {
         <a href="../auth/logout.php">Logout</a>
     </div>
 
+<form method="POST">
+    <input type="email" name="email" placeholder="Email" required><br><br>
+
+    <input type="password" name="password" placeholder="Password" required><br><br>
+
+    <button type="submit" name="login">Login</button>
+</form>
+<p style="text-align:center; margin-top:15px;">
+
+    Don't have an account?
+
+    <a href="register.php" style="color:#00c3ff; font-weight:bold;">
+        Register Here
+    </a>
+
+</p>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+   
+
     <!-- PAGE CONTENT HERE -->
+    <title>Event Management System</title>
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+
 
 </div>
 

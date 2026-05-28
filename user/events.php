@@ -24,6 +24,10 @@ $result = mysqli_query($conn, $sql);
 <?php while($row = mysqli_fetch_assoc($result)) { ?>
 
 <div class="event-card">
+    <img
+    src="../assets/uploads/<?php echo $row['image']; ?>"
+    class="event-image"
+>
 
     <h2><?php echo $row['title']; ?></h2>
 
