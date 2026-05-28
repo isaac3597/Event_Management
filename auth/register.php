@@ -9,8 +9,20 @@ if(isset($_POST['register'])) {
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $role = $_POST['role'];
 
-    $sql = "INSERT INTO users(fullname, email, password, role)
-            VALUES('$fullname', '$email', '$password', '$role')";
+   $sql = "INSERT INTO users(
+            fullname,
+            email,
+            password,
+            role,
+            status
+        )
+        VALUES(
+            '$fullname',
+            '$email',
+            '$password',
+            '$role',
+            'pending'
+        )";
 
     if(mysqli_query($conn, $sql)) {
         echo "Registration successful";
