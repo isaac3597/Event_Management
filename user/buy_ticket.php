@@ -308,6 +308,15 @@ STATUS: AUTHORISED
         >
 
         <label>Number of Tickets</label>
+        </select><br><br>
+        <input
+    type="number"
+    id="quantity"
+    name="quantity"
+    min="1"
+    required
+>
+
         <label>Select Seat</label>
 
 <select name="seat_number" required>
@@ -346,14 +355,7 @@ STATUS: AUTHORISED
 
     ?>
 
-</select><br><br>
-        <input
-    type="number"
-    id="quantity"
-    name="quantity"
-    min="1"
-    required
->
+
 
         <label>Total Amount</label>
 

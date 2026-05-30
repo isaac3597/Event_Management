@@ -37,7 +37,7 @@ $result = mysqli_query($conn, $sql);
 
 $row = mysqli_fetch_assoc($result);
 
-// SMALL RECTANGLE SIZE
+// CREATE SMALL RECTANGLE PDF
 $pdf = new FPDF(
     'L',
     'mm',
@@ -71,6 +71,7 @@ $pdf->SetTextColor(0,0,0);
 // DETAILS
 $pdf->SetFont('Arial','',10);
 
+// NAME
 $pdf->SetX(6);
 
 $pdf->Cell(
@@ -81,13 +82,19 @@ $pdf->Cell(
     1
 );
 
+// CLASS
 $pdf->SetX(6);
 
 $pdf->Cell(
     60,
     5,
     'Class: '.$row['ticket_type'],
-    $pdf->SetX(6);
+    0,
+    1
+);
+
+// SEAT
+$pdf->SetX(6);
 
 $pdf->Cell(
     60,
@@ -96,10 +103,8 @@ $pdf->Cell(
     0,
     1
 );
-    0,
-    1
-);
 
+// QUANTITY
 $pdf->SetX(6);
 
 $pdf->Cell(
@@ -110,6 +115,7 @@ $pdf->Cell(
     1
 );
 
+// DATE
 $pdf->SetX(6);
 
 $pdf->Cell(
@@ -120,6 +126,7 @@ $pdf->Cell(
     1
 );
 
+// LOCATION
 $pdf->SetX(6);
 
 $pdf->MultiCell(
@@ -173,10 +180,11 @@ $pdf->Cell(
     1
 );
 
-// DOWNLOAD
+// DOWNLOAD PDF
 $pdf->Output(
     'D',
     'Ticket_'.$ticket_id.'.pdf'
 );
 
 ?>
+```
